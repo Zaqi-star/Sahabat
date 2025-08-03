@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahabat Spektakuler!</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at 60% 40%, #6dd5ed 0%, #232526 100%);
+            font-family: 'Segoe UI', 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 600px;
+            margin: 48px auto;
+            background: rgba(255,255,255,0.93);
+            border-radius: 30px;
+            box-shadow: 0 8px 32px #2193b080;
+            padding: 40px 28px 60px 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 22px;
+            border: 6px solid #2193b0;
+            box-shadow: 0 0 30px #2193b0a0;
+            animation: avatarSpin 3s linear infinite;
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @keyframes avatarSpin {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+        h1 {
+            color: #176ca0;
+            font-size: 2.6em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 12px #2193b040;
+            animation: fadeInDown 1.2s;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .message {
+            font-size: 1.2em;
+            color: #222;
+            margin-bottom: 28px;
+            font-style: italic;
+            animation: fadeIn 1.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .friendship {
+            background: linear-gradient(90deg, #e3f2fd 80%, #b2ebf2 100%);
+            padding: 22px;
+            border-radius: 16px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 8px #2193b020;
+            animation: fadeInUp 1.5s;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .friendship ul {
+            text-align: left;
+            margin: 0;
+            padding-left: 22px;
+        }
+        .friendship li {
+            margin-bottom: 12px;
+            font-size: 1.12em;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .button {
+            background: linear-gradient(90deg, #2193b0 60%, #6dd5ed 100%);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 16px 38px;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 2px 12px #2193b040;
+            transition: transform 0.2s, background 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+        .button:hover {
+            transform: scale(1.12) rotate(-2deg);
+            background: linear-gradient(90deg, #176ca0 60%, #2193b0 100%);
+        }
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: confetti-fall 2.5s linear forwards;
+            z-index: 10;
+        }
+        @keyframes confetti-fall {
+            0% { top: -20px; opacity: 0.8;}
+            80% { opacity: 1;}
+            100% { top: 100vh; opacity: 0;}
+        }
+        .moving-btn {
+            position: absolute !important;
+            transition: left 0.5s, top 0.5s, transform 0.5s;
+        }
+        .badge {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: #2193b0;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1em;
+            box-shadow: 0 2px 8px #2193b040;
+            letter-spacing: 1px;
+            animation: badgePop 1.2s;
+        }
+        @keyframes badgePop {
+            0% { transform: scale(0);}
+            80% { transform: scale(1.2);}
+            100% { transform: scale(1);}
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <div class="badge">SAHABAT PALING KEREN</div>
+        <div class="avatar">
+            <img src="20241029_182551.jpg" alt="Foto Sahabat">
+        </div>
+        <h1>Bro, You're Legendary!</h1>
+        <div class="message">
+            Hidup jadi lebih berwarna dan seru karena ada kamu.<br>
+            Sahabat sejati, partner mabar, dan motivator paling gokil!
+        </div>
+        <div class="friendship">
+            <ul>
+                <li>🔥 Selalu support di saat suka maupun duka</li>
+                <li>⚽ Partner futsal, petualangan, dan mabar</li>
+                <li>😂 Sumber tawa, candaan, dan meme receh</li>
+                <li>💪 Motivator dan penyemangat hidup</li>
+                <li>🎮 Teman mabar paling setia</li>
+                <li>🚀 Siap beraksi kapan saja!</li>
+            </ul>
+        </div>
+        <button class="button" id="moveBtn" onclick="showConfetti(); moveButton();">Klik Aku, Bro!</button>
+    </div>
+    <script>
+        function showConfetti() {
+            const container = document.getElementById('mainContainer');
+            for(let i=0; i<50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random()*container.offsetWidth + 'px';
+                confetti.style.background = ['#2193b0','#176ca0','#6dd5ed','#b2ebf2','#ff9800','#43cea2'][Math.floor(Math.random()*6)];
+                confetti.style.animationDuration = (Math.random()*1.5+1.5) + 's';
+                confetti.style.top = '-20px';
+                container.appendChild(confetti);
+                setTimeout(()=>confetti.remove(), 2500);
+            }
+        }
+
+        function moveButton() {
+            const btn = document.getElementById('moveBtn');
+            const container = document.getElementById('mainContainer');
+            btn.classList.add('moving-btn');
+            // Container size
+            const cRect = container.getBoundingClientRect();
+            // Button size
+            const bRect = btn.getBoundingClientRect();
+            // Random position (within container, avoid out of bounds)
+            const maxLeft = cRect.width - bRect.width - 20;
+            const maxTop = cRect.height - bRect.height - 20;
+            const left = Math.random() * maxLeft;
+            const top = Math.random() * maxTop + 100;
+            btn.style.left = left + 'px';
+            btn.style.top = top + 'px';
+            btn.style.transform = `rotate(${Math.random()*20-10}deg) scale(1.1)`;
+        }
+    </script>
+</body>
+</html>
